@@ -7,6 +7,7 @@ require "action_mailer/railtie"
 require "active_resource/railtie"
 require "sprockets/railtie"
 # require "rails/test_unit/railtie"
+require "./lib/rack/restful_jsonp_middleware.rb"
 
 if defined?(Bundler)
   # If you precompile assets before deploying to production, use this line
@@ -61,5 +62,7 @@ module Server
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+
+    config.middleware.swap(Rack::MethodOverride,Rack::RestfulJsonpMiddleware)
   end
 end
