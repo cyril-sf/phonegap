@@ -1,6 +1,6 @@
 class ThingsController < ApplicationController
   def index
-    render json: {things: Thing.all}
+    render json: {things: Thing.all}, :callback => params[:callback]
   end
 
   def create

@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no;" />
 	<meta charset="utf-8">
 
+	<script type="text/javascript" charset="utf-8" src="jquery-1.7.2.min.js"></script>
 
 	<!-- iPad/iPhone specific css below, add after your main css >
 	<link rel="stylesheet" media="only screen and (max-device-width: 1024px)" href="ipad.css" type="text/css" />		
@@ -47,9 +48,11 @@
 	function onDeviceReady()
 	{
 		// do your thing!
-		navigator.notification.alert("Cordova is working")
+    $.getJSON('http://localhost:3000/things?_method=get&callback=?',
+              function(data) {
+                navigator.notification.alert(data['things'][0]['name']);
+              });
 	}
-    
     </script>
   </head>
   <body onload="onBodyLoad()">
